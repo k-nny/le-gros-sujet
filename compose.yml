@@ -1,0 +1,19 @@
+services:
+  web:
+    build: ./
+    ports:
+      - "8081:80"
+    volumes:
+      - .:/var/www/html
+  db2:
+    image: postgres
+    environment:
+      POSTGRES_USER: utilisateur
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dbname
+      POSTGRES_PORT: port
+  composer: 
+    image: composer
+    volumes:
+      - .:/app
+    command: composer install
