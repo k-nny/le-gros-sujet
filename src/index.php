@@ -26,15 +26,16 @@ $result = $db->query("select * from taches");
 // TRAITEMENT DES RESULTATS (boucle)
 echo "<ul>";
 while ($row = $result->fetch((PDO::FETCH_ASSOC))) {
-    echo "<li>".$row["libelle_tache"]."</li>";
+    echo "<li>".$row["libelle_tache"];
+    echo "<form method='post'>";
+    echo "<input type='hidden' name='id_tache' value='".$row["id_tache"]."'/>";
+    echo "<input type='submit' name='action' value='submit'/>";
+    echo "</form>";
+    echo "</li>";
 }
 
 echo "</ul>";
-echo "<form method='post'>";
-    echo "<input name='id_tache' value='".$row["id_tache"]."'/>";
-    echo "<input type='submit' name='action' value='submit'/>";
-    echo "</form>";
-    echo "</td>";
+
 echo "<ul>";
 
 foreach ($status as $key => $statu) {
