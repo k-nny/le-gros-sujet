@@ -50,7 +50,7 @@ while ($row = $result->fetch((PDO::FETCH_ASSOC))) {
     $classe = $row['coche'] ? 'cochee' : 'pas_cochee'; // Si 'coche' est true, la classe devient 'cochee', sinon pas_cochee
     echo "<li class='tache ".$classe."'>";
     echo "<form method='post' action='coche.php'>";
-    echo "<button type='submit'><div>❎</div></button>";
+    echo "<button type='submit'><div>". ($row['coche'] ? '✅' : '🟩')."</div></button>";
     echo "<div class='libelle'>".$row["libelle_tache"]."</div>";
     echo "<input type='hidden' name='id_tache' value='".$row["id_tache"]."'/>";
     echo "</form>";

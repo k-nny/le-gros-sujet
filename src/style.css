@@ -25,7 +25,7 @@ h1{
     background-color: rgba(44, 206, 251, 0.709);
 }
 
-.cochee{
+.cochee .libelle{
     text-decoration: line-through black 2px;
 }
 
