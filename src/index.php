@@ -24,22 +24,19 @@ catch (\Exception $e) {
 $result = $db->query("select * from taches");
 
 // TRAITEMENT DES RESULTATS (boucle)
-echo "<table>";
+echo "<ul>";
 while ($row = $result->fetch((PDO::FETCH_ASSOC))) {
-    echo "<tr>";
-    echo "<td>".$row["libelle_tache"]."</td>";
-    echo "<td>";
-    echo "<form method='post' action='coche.php'>";
-    echo "<input type='hidden' name='id_tache' value='".$row["id_tache"]."'/>";
-    echo "<input type='submit' name='action' value=''/>";
+    echo "<li>".$row["libelle_tache"]."</li>";
+}
+
+echo "</ul>";
+echo "<form method='post'>";
+    echo "<input name='id_tache' value='".$row["id_tache"]."'/>";
+    echo "<input type='submit' name='action' value='submit'/>";
     echo "</form>";
     echo "</td>";
-
-    echo "</tr>";
-}
-echo "</table>";
-
 echo "<ul>";
+
 foreach ($status as $key => $statu) {
     echo "<li>$key : " . ($statu ? '🟩' : '🟥') . '</li>';
 }
@@ -53,4 +50,4 @@ if(count($errors)) {
     }
     echo "</ul>";
 }
-
+?>
