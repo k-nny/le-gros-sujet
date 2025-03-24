@@ -12,6 +12,7 @@ animations = [
         sound: '8bit-shot.wav'
     },
 
+
 ]
 
 
