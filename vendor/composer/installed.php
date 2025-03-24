@@ -3,7 +3,7 @@
         'name' => 'kgaut/docker-test-app',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'f49e2406bd874b9da93955f0b9b794953373f473',
+        'reference' => 'f7187cf1761b9925badf5594a646b54551d1d491',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'kgaut/docker-test-app' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'f49e2406bd874b9da93955f0b9b794953373f473',
+            'reference' => 'f7187cf1761b9925badf5594a646b54551d1d491',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

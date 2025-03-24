@@ -30,7 +30,7 @@ while ($row = $result->fetch((PDO::FETCH_ASSOC))) {
     echo "<td>".$row["libelle_tache"]."</td>";
     echo "<td>";
     echo "<form method='post' action='coche.php'>";
-    echo "<input type='hidden' name='idgame' value='".$row["idgame"]."'/>";
+    echo "<input type='hidden' name='id_tache' value='".$row["id_tache"]."'/>";
     echo "<input type='submit' name='action' value=''/>";
     echo "</form>";
     echo "</td>";

@@ -1,0 +1,7 @@
+table{
+    border-collapse: collapse;
+}
+td{
+    border: solid 2px orange;
+    padding: 5px;
+}
