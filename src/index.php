@@ -27,9 +27,9 @@ $result = $db->query("select * from taches");
 echo "<ul>";
 while ($row = $result->fetch((PDO::FETCH_ASSOC))) {
     echo "<li>".$row["libelle_tache"];
-    echo "<form method='post'>";
+    echo "<form method='post' action='del.php'>";
     echo "<input type='hidden' name='id_tache' value='".$row["id_tache"]."'/>";
-    echo "<input type='submit' name='action' value='submit'/>";
+    echo "<input type='submit' name='action' value=''/>";
     echo "</form>";
     echo "</li>";
 }
@@ -52,3 +52,21 @@ if(count($errors)) {
     echo "</ul>";
 }
 ?>
+    </section>
+    <section>
+        <h2>Ajouter un jeu</h2>
+        <form method="post" action="add.php">
+            <div>
+                <label>Description de la tâche</label>
+                <input type="text"name="libelle">
+            </div>
+            <div>
+                <label></label>
+                <input type="submit"name="option" value="Ajouter">
+                <?php
+                    if (isset($_SESSION["error"]))
+                        echo "<p class='error'>".$_SESSION["error"]."</p>";
+                ?>
+            </div>
+        </form>
+    </section>
