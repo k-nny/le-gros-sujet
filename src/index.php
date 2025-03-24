@@ -17,9 +17,19 @@
     $status = [];
     $errors = [];
 
-    // Display message from URL
-    if (isset($_GET['message'])) {
-        echo "<p class='message'>" . htmlspecialchars($_GET['message']) . "</p>";
+    // Exemple de message reçu
+    $message = $_GET['message'] ?? '';
+
+    // Vérifiez si le message commence par "Erreur"
+    if (strpos($message, 'Erreur') === 0) {
+        $class = 'messageerreur';
+    } else {
+        $class = '';
+    }
+
+    // Affichage du message avec la classe appropriée
+    if ($message) {
+        echo "<p class='message $class'>" . htmlspecialchars($message) . "</p>";
     }
 
     try {
@@ -29,16 +39,17 @@
 
         // Fetch tasks
         $tachesrestantes = $db->query("SELECT * FROM taches where coche is false");
+        $tachesrestantespourleif = $db->query("SELECT * FROM taches where coche is false");
         $tachesfinies = $db->query("SELECT * FROM taches where coche is true");
         $tachesfiniespourleif = $db->query("SELECT * FROM taches where coche is true");
     } catch (\Exception $e) {
         $status['DB2'] = false;
         $errors['DB2'] = $e->getMessage();
     }
-    ?>
 
-    <h1>Les tâches restantes :</h1>
-    <?php
+    if ($tachesrestantespourleif->fetch((PDO::FETCH_ASSOC))) {
+        echo "<h1>Les tâches restantes :</h1>";
+    }
     echo "<ul id='taches'>";
     while ($row = $tachesrestantes->fetch((PDO::FETCH_ASSOC))) {
         $classe = $row['coche'] ? 'cochee' : 'pas_cochee';
@@ -74,6 +85,7 @@
     ?>
 
 <script src="explosion.js"></script>
+<script src="main.js" defer></script>
 
 
     <section>

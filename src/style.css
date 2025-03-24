@@ -37,7 +37,20 @@ button{
     padding: 0px 20px;
 }
 
+.message {
+    display: flex;
+    text-align: center;
+    background-color: rgba(14, 194, 14, 0.5);
+    margin:0 250px;
+    height: 5vh;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
 
+.messageerreur{
+    background-color: rgba(194, 14, 14, 0.5);
+}
 
 form{
     display: flex;
