@@ -1,8 +1,8 @@
 <?php
-require "../vendor/autoload.php";
+require "../../vendor/autoload.php";
 
 // Chargement des variables d'environnement (.env)
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
 try {
@@ -33,17 +33,17 @@ try {
             $updateStatement->execute();
 
             // Rediriger vers la page principale avec un message de succès
-            header("Location: index.php");
+            header("Location: ../index.php");
             exit();
         } else {
             // Si la tâche n'existe pas
-            header("Location: index.php");
+            header("Location: ../index.php");
             exit();
         }
     }
 } catch (\Exception $e) {
     // En cas d'erreur
-    header("Location: ./index.php?message=Erreur : " . $e->getMessage());
+    header("Location: ../index.php?message=Erreur : " . $e->getMessage());
     exit();
 }
 ?>

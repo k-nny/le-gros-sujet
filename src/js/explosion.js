@@ -31,7 +31,7 @@ document.querySelectorAll('.delete-button').forEach(button => {
 
         // Soumettre le formulaire après l'explosion
         setTimeout(() => {
-            form.setAttribute('action', 'delete.php'); // Définit l'action du formulaire
+            form.setAttribute('action', './php/delete.php'); // Définit l'action du formulaire
             form.submit(); // Soumet le formulaire
         }, 600); // Durée de l'animation (0.6s)
     });

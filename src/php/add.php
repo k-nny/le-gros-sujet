@@ -1,8 +1,8 @@
 <?php
-require "../vendor/autoload.php";
+require "../../vendor/autoload.php";
 
 // Chargement des variables d'environnement (.env)
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
 $status = [];
@@ -25,15 +25,15 @@ try {
             $statement->execute();
 
             // Redirection vers la page principale avec un message de confirmation
-            header("Location: ./index.php?message=Tâche ajoutée avec succès");
+            header("Location: ../index.php?message=Tâche ajoutée avec succès");
             exit();
         } else {
-            header("Location: ./index.php?message=Erreur : le champ de la tâche est vide");
+            header("Location: ../index.php?message=Erreur : le champ de la tâche est vide");
             exit();
         }
     }
 } catch (\Exception $e) {
-    header("Location: index.php?message=Erreur lors de la connexion ou de l'exécution");
+    header("Location: ../index.php?message=Erreur lors de la connexion ou de l'exécution");
     exit();
 }
 ?>
