@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
 <body>
@@ -55,7 +55,7 @@
         $classe = $row['coche'] ? 'cochee' : 'pas_cochee';
         echo "<li class='tache $classe' id='tache-" . $row['id_tache'] . "'>";
         echo "<form method='post' class='delete-form'>";
-        echo "<button type='submit' formaction='coche.php'>" . ($row['coche'] ? '✅' : '🟩') . "</button>";
+        echo "<button type='submit' formaction='php/coche.php'>" . ($row['coche'] ? '✅' : '🟩') . "</button>";
         echo "<button type='button' class='delete-button'>💣</button>";
         echo "<div class='libelle'>" . htmlspecialchars($row["libelle_tache"]) . "</div>";
         echo "<input type='hidden' name='id_tache' value='" . $row["id_tache"] . "'/>";
@@ -74,7 +74,7 @@
         if ($classe=='cochee'){
         echo "<li class='tache $classe' id='tache-" . $row['id_tache'] . "'>";
         echo "<form method='post' class='delete-form'>";
-        echo "<button type='submit' formaction='coche.php'>" . ($row['coche'] ? '✅' : '🟩') . "</button>";
+        echo "<button type='submit' formaction='php/coche.php'>" . ($row['coche'] ? '✅' : '🟩') . "</button>";
         echo "<button type='button' class='delete-button'>💣</button>";
         echo "<div class='libelle'>" . htmlspecialchars($row["libelle_tache"]) . "</div>";
         echo "<input type='hidden' name='id_tache' value='" . $row["id_tache"] . "'/>";
@@ -84,13 +84,13 @@
     echo "</ul>";
     ?>
 
-<script src="explosion.js"></script>
-<script src="main.js" defer></script>
+<script src="js/explosion.js"></script>
+<script src="js/main.js" defer></script>
 
 
     <section>
         <h2>Ajouter une tâche</h2>
-        <form method="post" action="add.php">
+        <form method="post" action="php/add.php">
             <div>
                 <label>Description de la tâche :</label>
                 <input type="text" name="libelle">

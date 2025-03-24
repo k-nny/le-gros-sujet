@@ -5,6 +5,8 @@ services:
       - "8081:80"
     volumes:
       - .:/var/www/html
+      - ./src:/var/www/html/src
+      - ./src/php:/var/www/html/src/php
   db2:
     image: postgres
     environment:

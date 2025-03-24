@@ -1,8 +1,8 @@
 <?php
-require "../vendor/autoload.php";
+require "../../vendor/autoload.php";
 
 // Chargement des variables d'environnement (.env)
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
 try {
@@ -21,15 +21,15 @@ try {
         $statement->execute();
 
         // Redirection après la suppression
-        header("Location: index.php?message=Tâche supprimée avec succès");
+        header("Location: ../index.php?message=Tâche supprimée avec succès");
         exit();
     } else {
         // Si aucune donnée n'est envoyée ou ID manquant
-        header("Location: index.php?message=Erreur : ID de la tâche manquant");
+        header("Location: ../index.php?message=Erreur : ID de la tâche manquant");
         exit();
     }
 } catch (Exception $e) {
     // Gérer les erreurs
-    header("Location: index.php?message=Erreur lors de la suppression : " . $e->getMessage());
+    header("Location: ../index.php?message=Erreur lors de la suppression : " . $e->getMessage());
     exit();
 }
