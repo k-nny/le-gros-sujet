@@ -36,9 +36,9 @@ catch (\Exception $e) {
 $result = $db->query("select * from taches");
 
 // TRAITEMENT DES RESULTATS (boucle)
-echo "<ul>";
+echo "<ul id='taches'>";
 while ($row = $result->fetch((PDO::FETCH_ASSOC))) {
-    echo "<li>".$row["libelle_tache"];
+    echo "<li class='tache'>".$row["libelle_tache"];
     echo "<form method='post'>";
     echo "<input type='hidden' name='id_tache' value='".$row["id_tache"]."'/>";
     echo "<input type='submit' name='action' value='submit'/>";
