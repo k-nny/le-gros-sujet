@@ -21,6 +21,10 @@ $dotenv->load();
 $status = [];
 $errors = [];
 
+// Afficher le message transmis via l'URL
+if (isset($_GET['message'])) {
+    echo "<p class='message'>" . htmlspecialchars($_GET['message']) . "</p>";
+}
 
 try {
     $db = new PDO('pgsql:dbname=' . $_SERVER['DB_NAME'] . ';port=' . $_SERVER['DB_PORT'] . ';host=' . $_SERVER['DB_HOST'], $_SERVER['DB_USER'], $_SERVER['DB_PASS']);

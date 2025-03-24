@@ -1,40 +1,39 @@
 <?php
-session_start();
+require "../vendor/autoload.php";
 
-$db = new PDO('pgsql:dbname=' . $_SERVER['DB_NAME'] . ';port=' . $_SERVER['DB_PORT'] . ';host=' . $_SERVER['DB_HOST'], $_SERVER['DB_USER'], $_SERVER['DB_PASS']);
-$db->query("SET search_path TO legrosprojet_dodeyk;");
+// Chargement des variables d'environnement (.env)
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
+$status = [];
+$errors = [];
 
 try {
-    // Requête SQL avec des paramètres préparés
-    $query = "SELECT * FROM tache WHERE libelle_tache = :value";
-    $statement = $pdo->prepare($query);
+    // Connexion à la base de données
+    $db = new PDO('pgsql:dbname=' . $_SERVER['DB_NAME'] . ';port=' . $_SERVER['DB_PORT'] . ';host=' . $_SERVER['DB_HOST'], $_SERVER['DB_USER'], $_SERVER['DB_PASS']);
+    $db->query("SET search_path TO legrosprojet_dodeyk;"); // Schéma
 
-    // Associer un paramètre avec une valeur
-    $valueToEscape = "example_value";
-    $statement->bindParam(':value', $valueToEscape, PDO::PARAM_STR);
+    // Gérer la soumission du formulaire
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['option']) && $_POST['option'] === 'Ajouter') {
+        $libelle = $_POST['libelle'] ?? '';
 
-    // Exécuter la requête
-    $statement->execute();
+        // Validation du champ "libelle"
+        if (!empty($libelle)) {
+            $query = "INSERT INTO taches (libelle_tache) VALUES (:libelle)";
+            $statement = $db->prepare($query);
+            $statement->bindParam(':libelle', $libelle, PDO::PARAM_STR);
+            $statement->execute();
 
-    // Récupérer les résultats avec PDO::FETCH_ASSOC
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-    // Afficher les résultats
-    foreach ($results as $row) {
-        print_r($row);
+            // Redirection vers la page principale avec un message de confirmation
+            header("Location: ./index.php?message=Tâche ajoutée avec succès");
+            exit();
+        } else {
+            header("Location: ./index.php?message=Erreur : le champ de la tâche est vide");
+            exit();
+        }
     }
-} catch (PDOException $e) {
-    echo "Erreur : " . $e->getMessage();
+} catch (\Exception $e) {
+    header("Location: index.php?message=Erreur lors de la connexion ou de l'exécution");
+    exit();
 }
-
-$libelle_tache = pg_escape_string($_POST["libelle_tache"]);
-
-//TEST DE Validité des données --> si champ vide, ne rien insérer
-if (empty($libelle_tache)){
-    $_SESSION["error"]="Champs obligatoires !";
-} else{
-    pg_query("insert into game(libelle_tache)
-            values('$libelle_tache')");
-    unset($_SESSION["error"]);
-}
-header("Location: .");
+?>
