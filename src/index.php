@@ -1,17 +1,17 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
- </head>
- <body>
-    
- </body>
- </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>Document</title>
+</head>
+<body>
 
- <?php
+</body>
+</html>
+
+<?php
 require "../vendor/autoload.php";
 
 // Chargement des variables d'environnement (.env)
@@ -40,11 +40,15 @@ catch (\Exception $e) {
 // REQUETE (interessant)
 $result = $db->query("select * from taches");
 
+
+?>
+<h1>Les tâches</h1>
+<?php
 // TRAITEMENT DES RESULTATS (boucle)
 echo "<ul id='taches'>";
 while ($row = $result->fetch((PDO::FETCH_ASSOC))) {
     echo "<li class='tache'>";
-    echo "<form method='post' action='/'>";
+    echo "<form method='post' action='del.php'>";
     echo "<button type='submit'><div>❎</div></button>";
     echo "<div>".$row["libelle_tache"]."</div>";
     echo "<input type='hidden' name='id_tache' value='".$row["id_tache"]."'/>";
