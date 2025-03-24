@@ -42,3 +42,32 @@ button{
 form{
     display: flex;
 }
+
+.explosion {
+    animation: explode 0.6s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.5) rotate(30deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(2) rotate(60deg);
+    }
+}
+.explosion-gif {
+    position: absolute;
+    width: 120px; /* Taille du GIF */
+    height: 120px;
+    top: 50%; /* Centrer verticalement */
+    left: 50%; /* Centrer horizontalement */
+    transform: translate(-50%, -50%); /* Ajustement pour centrer parfaitement */
+    z-index: 10; /* Assure que le GIF est au-dessus */
+    pointer-events: none; /* Empêche les interactions */
+}
