@@ -56,24 +56,8 @@ while ($row = $result->fetch((PDO::FETCH_ASSOC))) {
     echo "</form>";
     echo "</li>";
 }
-
 echo "</ul>";
 
-echo "<ul>";
-
-foreach ($status as $key => $statu) {
-    echo "<li>$key : " . ($statu ? '🟩' : '🟥') . '</li>';
-}
-echo "</ul>";
-
-if(count($errors)) {
-    echo "<h1>Tu veux du log d'erreur ?</h1>";
-    echo "<ul>";
-    foreach ($errors as $key => $error) {
-        echo "<li>$key : $error";
-    }
-    echo "</ul>";
-}
 ?>
     </section>
     <section>
