@@ -15,23 +15,26 @@ h1{
 }
 
 .tache{
-    border: solid 1px red;
     list-style: none;
-    display: inline-flex;
-    border-radius: 5px;
+    display: flex;
+    border-radius: 10px;
     padding: 10px;
     margin: 5px;
     width: 50vw;
     text-align: center;
     font-size: 150%;
+    background-color: rgba(44, 206, 251, 0.709);
 }
 
 button{
     border: none;
     text-decoration: none;
-    background-color: white;
+    background-color: inherit;
     font-size: 80%;
     padding: 0px 20px;
+}
+
+.libelle{
 }
 
 form{

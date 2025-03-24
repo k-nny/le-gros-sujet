@@ -50,7 +50,7 @@ while ($row = $result->fetch((PDO::FETCH_ASSOC))) {
     echo "<li class='tache'>";
     echo "<form method='post' action='del.php'>";
     echo "<button type='submit'><div>❎</div></button>";
-    echo "<div>".$row["libelle_tache"]."</div>";
+    echo "<div class='libelle'>".$row["libelle_tache"]."</div>";
     echo "<input type='hidden' name='id_tache' value='".$row["id_tache"]."'/>";
     echo "</form>";
     echo "</li>";
