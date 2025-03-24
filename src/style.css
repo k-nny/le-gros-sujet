@@ -1,7 +1,24 @@
-table{
-    border-collapse: collapse;
+*{
+    margin: 0;
+    padding: 0;
 }
-td{
-    border: solid 2px orange;
-    padding: 5px;
+
+
+#taches{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tache{
+    border: solid 1px red;
+    list-style: none;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    width: 50vw;
+    text-align: center;
+    font-size: 200%;
 }
