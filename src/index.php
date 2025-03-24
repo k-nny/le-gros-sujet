@@ -10,6 +10,7 @@
     
  </body>
  </html>
+
  <?php
 require "../vendor/autoload.php";
 
@@ -42,10 +43,11 @@ $result = $db->query("select * from taches");
 // TRAITEMENT DES RESULTATS (boucle)
 echo "<ul id='taches'>";
 while ($row = $result->fetch((PDO::FETCH_ASSOC))) {
-    echo "<li class='tache'>".$row["libelle_tache"];
-    echo "<form method='post'>";
+    echo "<li class='tache'>";
+    echo "<form method='post' action='/'>";
+    echo "<button type='submit'><div>❎</div></button>";
+    echo "<div>".$row["libelle_tache"]."</div>";
     echo "<input type='hidden' name='id_tache' value='".$row["id_tache"]."'/>";
-    echo "<input type='submit' name='action' value=''/>";
     echo "</form>";
     echo "</li>";
 }
