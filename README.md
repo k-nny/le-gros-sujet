@@ -4,7 +4,7 @@ DODEY Kenny A1
 
 # Fonctionnailtés
 
-Notre application est une ToDoList, elle est composée de trois parties: 
+Notre application est une ToDoList composée de trois parties: 
 
 ### 1ère partie
     - Les tâches en cours non terminées.
@@ -20,3 +20,5 @@ A chaque suppression de tâches, une animation accompagne la suppression de cett
 
 A chaque ajout ou suppression d'une tâche, un message apparaît en haut de l'écran afin de vous prévenir que l'action s'est déroulée avec succès.
 Dans le cas contraire, un message sur fond rouge vous indiquera l'erreur.
+
+L'URL à mettre dans la barre d'adresse est : "localhost:8081/src"
