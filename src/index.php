@@ -28,17 +28,19 @@
         $status['DB2'] = true;
 
         // Fetch tasks
-        $result = $db->query("SELECT * FROM taches");
+        $tachesrestantes = $db->query("SELECT * FROM taches where coche is false");
+        $tachesfinies = $db->query("SELECT * FROM taches where coche is true");
+        $tachesfiniespourleif = $db->query("SELECT * FROM taches where coche is true");
     } catch (\Exception $e) {
         $status['DB2'] = false;
         $errors['DB2'] = $e->getMessage();
     }
     ?>
 
-    <h1>Les tâches</h1>
+    <h1>Les tâches restantes :</h1>
     <?php
     echo "<ul id='taches'>";
-    while ($row = $result->fetch((PDO::FETCH_ASSOC))) {
+    while ($row = $tachesrestantes->fetch((PDO::FETCH_ASSOC))) {
         $classe = $row['coche'] ? 'cochee' : 'pas_cochee';
         echo "<li class='tache $classe' id='tache-" . $row['id_tache'] . "'>";
         echo "<form method='post' class='delete-form'>";
@@ -50,35 +52,28 @@
         echo "</li>";
     }
     echo "</ul>";
+    
+    if ($tachesfiniespourleif->fetch((PDO::FETCH_ASSOC))) {
+        echo "<h1>Les tâches terminées :</h1>";
+    }
+
+    echo "<ul id='taches'>";
+    while ($row = $tachesfinies->fetch((PDO::FETCH_ASSOC))) {
+        $classe = $row['coche'] ? 'cochee' : 'pas_cochee';
+        if ($classe=='cochee'){
+        echo "<li class='tache $classe' id='tache-" . $row['id_tache'] . "'>";
+        echo "<form method='post' class='delete-form'>";
+        echo "<button type='submit' formaction='coche.php'>" . ($row['coche'] ? '✅' : '🟩') . "</button>";
+        echo "<button type='button' class='delete-button'>💣</button>";
+        echo "<div class='libelle'>" . htmlspecialchars($row["libelle_tache"]) . "</div>";
+        echo "<input type='hidden' name='id_tache' value='" . $row["id_tache"] . "'/>";
+        echo "</form>";
+        echo "</li>";
+    }}
+    echo "</ul>";
     ?>
 
-<script>
-    document.querySelectorAll('.delete-button').forEach(button => {
-        button.addEventListener('click', function() {
-            const taskItem = this.closest('li'); // Trouver l'élément de la tâche
-            const form = this.closest('.delete-form');
-
-            // Positionner le parent de manière relative (nécessaire pour absolute)
-            taskItem.style.position = 'relative';
-
-            // Créer un élément pour l'explosion
-            const explosion = document.createElement('img');
-            explosion.src = 'https://media.tenor.com/NJqk_2_eQ40AAAAi/explosion-gif-transparent.gif';
-            explosion.classList.add('explosion-gif');
-            taskItem.appendChild(explosion);
-
-             // Jouer le son d'explosion
-             const explosionSound = new Audio('explosion.mp3'); // Assurez-vous que ce fichier existe dans votre répertoire
-            explosionSound.play();
-
-            // Soumettre le formulaire après l'explosion
-            setTimeout(() => {
-                form.setAttribute('action', 'delete.php'); // Définit l'action du formulaire
-                form.submit(); // Soumet le formulaire
-            }, 600); // Durée de l'animation (0.6s)
-        });
-    });
-</script>
+<script src="explosion.js"></script>
 
 
     <section>
