@@ -23,6 +23,10 @@
     font-size: 200%;
 }
 
+.cochee{
+    text-decoration: line-through black 2px;
+}
+
 button{
     border: none;
     text-decoration: none;

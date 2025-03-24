@@ -43,8 +43,9 @@ $result = $db->query("select * from taches");
 // TRAITEMENT DES RESULTATS (boucle)
 echo "<ul id='taches'>";
 while ($row = $result->fetch((PDO::FETCH_ASSOC))) {
-    echo "<li class='tache'>";
-    echo "<form method='post' action='/'>";
+    $classe = $row['coche'] ? 'cochee' : 'pas_cochee'; // Si 'coche' est true, la classe devient 'cochee', sinon pas_cochee
+    echo "<li class='tache ".$classe."'>";
+    echo "<form method='post' action='coche.php'>";
     echo "<button type='submit'><div>❎</div></button>";
     echo "<div>".$row["libelle_tache"]."</div>";
     echo "<input type='hidden' name='id_tache' value='".$row["id_tache"]."'/>";
@@ -72,7 +73,7 @@ if(count($errors)) {
 ?>
     </section>
     <section>
-        <h2>Ajouter un jeu</h2>
+        <h2>Ajouter une tache</h2>
         <form method="post" action="add.php">
             <div>
                 <label>Description de la tâche</label>
