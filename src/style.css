@@ -14,11 +14,23 @@
 .tache{
     border: solid 1px red;
     list-style: none;
-    display: inline-block;
+    display: inline-flex;
     border-radius: 5px;
     padding: 10px;
     margin: 5px;
     width: 50vw;
     text-align: center;
     font-size: 200%;
+}
+
+button{
+    border: none;
+    text-decoration: none;
+    background-color: white;
+    font-size: 80%;
+    padding: 0px 20px;
+}
+
+form{
+    display: flex;
 }
